@@ -1,0 +1,15 @@
+---
+layout: astra 
+sidebar: sidebar 
+permalink: index.html 
+lead: Replicate data between ONTAP storage systems to support backup and disaster recovery to the cloud or between clouds. 
+summary: ONTAP 스토리지 시스템 간에 데이터를 복제하여 클라우드 또는 클라우드 간 백업 및 재해 복구를 지원합니다. 
+---
+= 복제 설명서
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+

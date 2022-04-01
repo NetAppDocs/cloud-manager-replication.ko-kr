@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blocks>
+  <block id="b2ff5c112923ab1a84f9024c034ae3c3" category="summary">Cloud Manager 작업 환경 간에 데이터를 복제할 수 있습니다. 1회 데이터 복제를 선택하여 데이터를 클라우드 간에 이동하거나, 재해 복구 또는 장기 보존을 위한 반복 일정을 선택할 수 있습니다.</block>
+  <block id="87531525c3b816a3a29dbbcbcd9e58b1" category="doc">복제 정책에 대해 자세히 알아보십시오</block>
+  <block id="874fbc5828fab7b54057e8b64a511b45" category="paragraph">Cloud Manager에서 데이터 복제를 설정할 때 복제 정책을 선택하는 데 도움이 필요할 수 있습니다. 복제 정책은 스토리지 시스템이 소스 볼륨에서 대상 볼륨으로 데이터를 복제하는 방법을 정의합니다.</block>
+  <block id="e40495076bb4b5e4783f1d1ee0ad0a16" category="section-title">복제 정책의 기능</block>
+  <block id="e19e3a549d24cbd0e2a4d7afde5135b9" category="paragraph">ONTAP 운영 체제는 스냅샷 복사본이라는 백업을 자동으로 생성합니다. 스냅샷 복사본은 특정 시점의 파일 시스템 상태를 캡처하는 볼륨의 읽기 전용 이미지입니다.</block>
+  <block id="651f76dd5d1cb2befad7f11fa1e9daaa" category="paragraph">시스템 간에 데이터를 복제할 때 소스 볼륨에서 타겟 볼륨으로 스냅샷 복사본을 복제합니다. 복제 정책은 소스 볼륨에서 타겟 볼륨으로 복제할 스냅샷 복사본을 지정합니다.</block>
+  <block id="85fff253f12e639aac3437b2c24d5139" category="admonition">복제 정책은 SnapMirror 및 SnapVault 기술을 기반으로 재해 복구 보호 및 D2D 백업 및 복구를 제공하기 때문에 _protection_policies라고도 합니다.</block>
+  <block id="662a62e668373d0927ec7c1bfeb2b319" category="paragraph">다음 이미지는 스냅샷 복사본과 복제 정책 간의 관계를 보여줍니다.</block>
+  <block id="3802602e17f5cc165c7507f1c9a2e847" category="inline-image-macro">이 그림에서는 소스 볼륨의 스냅샷 복사본과 소스 볼륨에서 타겟 볼륨으로의 특정 스냅샷 복사본 복제를 지정하는 복제 정책을 보여 줍니다.</block>
+  <block id="81818114bafdd6d3c20723bfbb51f97c" category="paragraph"><block ref="81818114bafdd6d3c20723bfbb51f97c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0f237b0feffecdddaf6649c2d6d7809a" category="section-title">복제 정책의 유형입니다</block>
+  <block id="ef8a1d695c35e57928d4b85c35185a8a" category="paragraph">다음과 같은 세 가지 유형의 복제 정책이 있습니다.</block>
+  <block id="b07d46952856e1f9bc81741e810a135d" category="list-text">Mirror_policy는 새로 생성된 스냅샷 복사본을 대상 볼륨에 복제합니다.</block>
+  <block id="5ee26df8a5cbc26419cd11a2a77ad92d" category="paragraph">이러한 스냅샷 복사본을 사용하여 재해 복구 또는 1회 데이터 복제에 대비하여 소스 볼륨을 보호할 수 있습니다. 언제든지 데이터 액세스를 위해 대상 볼륨을 활성화할 수 있습니다.</block>
+  <block id="9bca25bd28efdcfd3aebccab5c918fcb" category="list-text">A_Backup_policy는 특정 스냅샷 복사본을 대상 볼륨에 복제하고 일반적으로 소스 볼륨에서보다 더 오랜 기간 동안 유지합니다.</block>
+  <block id="91934bdbfdc3c5214382994a56a46886" category="paragraph">데이터가 손상 또는 손실된 경우 이러한 스냅샷 복사본에서 데이터를 복원할 수 있으며 표준 준수 및 기타 거버넌스 관련 목적을 위해 데이터를 보존할 수 있습니다.</block>
+  <block id="264d1d85979e565f376768c29ac5980a" category="list-text">A_Mirror 및 Backup_policy는 재해 복구와 장기 보존을 모두 제공합니다.</block>
+  <block id="c5e319c770118f998f576ebb9b10069b" category="paragraph">각 시스템에는 다양한 상황에서 사용할 수 있는 기본 미러 및 백업 정책이 포함되어 있습니다. 사용자 지정 정책이 필요한 경우 System Manager를 사용하여 직접 만들 수 있습니다.</block>
+  <block id="d9ae190c29f834ec7084e50731eb8fea" category="paragraph">다음 이미지는 미러 정책과 백업 정책의 차이를 보여 줍니다. 미러 정책은 소스 볼륨에서 사용할 수 있는 스냅샷 복사본을 미러링합니다.</block>
+  <block id="5a7549c9e8b1c18d5706ec474c2a8ba4" category="inline-image-macro">이 그림에서는 소스 볼륨의 스냅샷 복사본과 소스 볼륨을 미러링하는 타겟 볼륨을 보여 줍니다.</block>
+  <block id="144abdc56cc3fbdbfae0ef89d327605b" category="paragraph"><block ref="144abdc56cc3fbdbfae0ef89d327605b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="35b902a7b4de8c8923d5c5b39b814e95" category="paragraph">백업 정책은 일반적으로 소스 볼륨에 유지되는 것보다 더 오래 스냅샷 복사본을 유지합니다.</block>
+  <block id="bf2150ef9467439727e9ba26af10d436" category="inline-image-macro">이 그림에서는 SnapVault가 스냅샷 복사본을 장기간 보존하므로 소스 볼륨과 백업 타겟 볼륨의 스냅샷 복사본을 보여 줍니다.</block>
+  <block id="ad8bcd8268bd244944d22d0323e8d319" category="paragraph"><block ref="ad8bcd8268bd244944d22d0323e8d319" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="95c3127441b4989e3d78b50920629c66" category="summary">복제 서비스의 새로운 기능에 대해 알아보십시오.</block>
+  <block id="490414e0366b091220802d406e52c076" category="doc">새로운 기능</block>
+  <block id="3b7a1a77cdd08778e0827fbf312442b7" category="section-title">2021년 9월 2일</block>
+  <block id="6c88f9e17d9019e00177d64f9db55d2e" category="section-title">ONTAP용 Amazon FSx 지원</block>
+  <block id="59dfc17500b1e0b8d1824eb8b1413080" category="paragraph">이제 Cloud Volumes ONTAP 시스템 또는 온프레미스 ONTAP 클러스터에서 ONTAP 파일 시스템용 Amazon FSx로 데이터를 복제할 수 있습니다.</block>
+  <block id="5057fdb214d9f3773bc386ba2aa1fcb0" category="section-title">2021년 5월 5일</block>
+  <block id="1473f0729c8bea54a5077a19ab764c47" category="section-title">인터페이스가 재설계되었습니다</block>
+  <block id="5a0a1bceb9fa4494f5bd231c6eb87a5b" category="paragraph">사용 편의성과 Cloud Manager 사용자 인터페이스의 현재 모양과 느낌을 맞추기 위해 Replication 탭을 다시 설계했습니다.</block>
+  <block id="0f9405518138d20fd96d78fe19dabf84" category="inline-image-macro">볼륨 관계 목록을 보여 주는 Cloud Manager의 재설계된 복제 탭 스크린샷</block>
+  <block id="ad0ba121971067cff2f6c3263f846473" category="paragraph"><block ref="ad0ba121971067cff2f6c3263f846473" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="958c15a697dc50afc44ab3fe2e061aec" category="summary">두 시스템 간에 데이터 복제를 설정한 후에는 Cloud Manager에서 데이터 복제 일정과 관계를 관리할 수 있습니다.</block>
+  <block id="2e4ca84ff13f65389599985c5d2a9f08" category="doc">일정 및 관계 관리</block>
+  <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">단계</block>
+  <block id="7a67cf78cd95f79c4c0a3698f1fc9113" category="list-text">복제 * 를 클릭합니다.</block>
+  <block id="775f5846d28de12857c9c89ae5d4a6e1" category="list-text">데이터 복제 관계의 상태를 검토하여 상태가 양호한지 확인합니다.</block>
+  <block id="384cf3526eba01b7701f7fde08ba751e" category="admonition">관계의 상태가 유휴 상태이고 미러 상태가 초기화되지 않은 경우 정의된 일정에 따라 데이터 복제가 수행되도록 대상 시스템에서 관계를 초기화해야 합니다. System Manager 또는 CLI(Command-Line Interface)를 사용하여 관계를 초기화할 수 있습니다. 이러한 상태는 대상 시스템에 장애가 발생한 후 다시 온라인 상태가 될 때 나타날 수 있습니다.</block>
+  <block id="4a4fc2634c97e1e3949084431ae3f4e1" category="list-text">볼륨 관계에 대한 작업 메뉴를 클릭하고 사용 가능한 작업 중 하나를 선택합니다.</block>
+  <block id="2dc72a54b6e5367898238d6dcb40d246" category="inline-image-macro">스크린샷: 복제 상태 페이지에서 사용할 수 있는 작업 목록을 표시합니다.</block>
+  <block id="594fdfa890e958e4ffa58557886eb75c" category="paragraph"><block ref="594fdfa890e958e4ffa58557886eb75c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7e237ab45b209987e5eb6464c44abac5" category="paragraph">다음 표에는 사용 가능한 작업이 설명되어 있습니다.</block>
+  <block id="004bf6c9a40003140292e97330236c53" category="cell">조치</block>
+  <block id="b5a7adde1af5c87d7fd797b6245c2a39" category="cell">설명</block>
+  <block id="a82be0f551b8708bc08eb33cd9ded0cf" category="cell">정보</block>
+  <block id="d94a71d39d4b5957a9cb08d7b25dc8d1" category="cell">볼륨 관계에 대한 세부 정보: 전송 정보, 마지막 전송 정보, 볼륨에 대한 세부 정보 및 관계에 할당된 보호 정책에 대한 정보를 표시합니다.</block>
+  <block id="e4c38d6d45baf080943d323dd51a2ce8" category="cell">휴식</block>
+  <block id="3592520f476679c41ae085dbea13f855" category="inline-link">ONTAP 9 볼륨 재해 복구 익스프레스 가이드</block>
+  <block id="f2bbb0bef78070a1fd8268d9772a2d0c" category="cell">소스 볼륨과 타겟 볼륨 간의 관계를 끊은 후 데이터 액세스를 위해 타겟 볼륨을 활성화합니다. 이 옵션은 일반적으로 소스 볼륨에서 데이터 손상, 실수로 인한 삭제 또는 오프라인 상태와 같은 이벤트로 인해 데이터를 제공할 수 없는 경우에 사용됩니다. 데이터 액세스를 위한 대상 볼륨을 구성하고 소스 볼륨을 재활성화하는 방법에 대한 자세한 내용은 를 참조하십시오<block ref="af502c2f8fb660944e2ad52aad1efcc3" category="inline-link-rx"></block>.</block>
+  <block id="45ada1a8b02e7bf10200aedcf56d13c8" category="cell">재동기화</block>
+  <block id="d41d8cd98f00b204e9800998ecf8427e" category="doc"></block>
+  <block id="56f83d4dac34839a8f3a283bafd276e8" category="paragraph">볼륨 간의 끊어진 관계를 다시 설정하고 정의된 일정에 따라 데이터 복제를 재개합니다.</block>
+  <block id="f43fdb6878de7980d30d532ea44e0baf" category="admonition">볼륨을 재동기화하면 대상 볼륨의 내용이 소스 볼륨의 컨텐츠로 덮어쓰여집니다.</block>
+  <block id="5209b5da9877de39bd3385b8056be084" category="paragraph">대상 볼륨에서 소스 볼륨으로 데이터를 재동기화하는 역방향 재동기화를 수행하려면 을 참조하십시오<block ref="af502c2f8fb660944e2ad52aad1efcc3" category="inline-link-rx"></block>.</block>
+  <block id="fb1729afce23e1bd1840f0ba32ef8e91" category="cell">재동기화</block>
+  <block id="fdd14ac0ba0eae4cebe22311577994f3" category="cell">소스 및 대상 볼륨의 역할을 바꿉니다. 원본 소스 볼륨의 컨텐츠는 대상 볼륨의 컨텐츠로 덮어쓰여집니다. 이 기능은 오프라인 상태인 소스 볼륨을 다시 활성화하려는 경우에 유용합니다. 마지막 데이터 복제와 소스 볼륨이 비활성화된 시간 사이에 원본 소스 볼륨에 기록된 데이터는 보존되지 않습니다.</block>
+  <block id="67d85e3bd91876173776dc6f189ff7ac" category="cell">일정 편집</block>
+  <block id="6f95f7aca41a993373d4a1096d61c7f0" category="cell">데이터 복제에 다른 스케줄을 선택할 수 있습니다.</block>
+  <block id="369e2ad9fb57b7fa6aea36dd7e48cf58" category="cell">최대 전송 속도를 편집합니다</block>
+  <block id="35dbbeea8ab5e735a28c3b41ed25bca0" category="cell">데이터를 전송할 수 있는 최대 속도(KB/초)를 편집할 수 있습니다.</block>
+  <block id="06933067aafd48425d67bcb01bba5cb6" category="cell">업데이트</block>
+  <block id="16685aa35f9f2843a357407642b0d7d9" category="cell">대상 볼륨을 업데이트하기 위해 증분 전송을 시작합니다.</block>
+  <block id="f2a6c498fb90ee345d997f888fce3b18" category="cell">삭제</block>
+  <block id="09cd2e52d52004647bc6c39549be0b94" category="cell">소스 볼륨과 타겟 볼륨 간의 데이터 보호 관계를 삭제합니다. 즉, 볼륨 간에 데이터 복제가 더 이상 발생하지 않습니다. 이 작업을 수행해도 데이터 액세스를 위한 대상 볼륨은 활성화되지 않습니다. 이 작업을 수행하면 시스템 간에 다른 데이터 보호 관계가 없는 경우 클러스터 피어 관계 및 스토리지 VM(SVM) 피어 관계도 삭제됩니다.</block>
+  <block id="b4feae198be8f3f2843284b7b6d126a4" category="paragraph">작업을 선택하면 Cloud Manager에서 관계 또는 일정을 업데이트합니다.</block>
+  <block id="ce21e7ae4271271294ccbf54c8fd6864" category="summary">NetApp은 다양한 방법으로 Cloud Manager를 지원합니다. 기술 자료(KB) 기사 및 커뮤니티 포럼과 같은 광범위한 무료 셀프 지원 옵션이 24x7 제공됩니다. 지원 등록에는 웹 티켓팅을 통한 원격 기술 지원이 포함됩니다.</block>
+  <block id="fabfc25ef8996fd90836e58a4c0b26b6" category="doc">도움을 받으십시오</block>
+  <block id="7ccaf84febc0ed633fbdbadb8d488a7e" category="paragraph"><block ref="7ccaf84febc0ed633fbdbadb8d488a7e" category="inline-link-macro-rx"></block></block>
+  <block id="f44753cd1ded9ad0818a4d62481460e9" category="summary">미러 정책과 달리 백업 SnapVault 정책은 특정 스냅샷 복사본을 타겟 볼륨에 복제합니다. 기본 정책 대신 고유한 정책을 사용하려는 경우 백업 정책의 작동 방식을 이해하는 것이 중요합니다.</block>
+  <block id="77ae0badcc9669dcf09b0b6ddb602a5a" category="paragraph">미러 정책과 달리 백업(SnapVault) 정책은 특정 스냅샷 복사본을 타겟 볼륨에 복제합니다. 기본 정책 대신 고유한 정책을 사용하려는 경우 백업 정책의 작동 방식을 이해하는 것이 중요합니다.</block>
+  <block id="5a987691c26800bb72299080978208d0" category="section-title">스냅샷 복사본 레이블과 백업 정책 간의 관계 이해</block>
+  <block id="84e1eb86d5601303f08cdde720ab00d5" category="paragraph">스냅샷 정책은 시스템에서 볼륨의 스냅샷 복사본을 생성하는 방법을 정의합니다. 이 정책에서는 스냅샷 복사본을 생성할 시기, 유지할 복사본 수 및 레이블 지정 방법을 지정합니다. 예를 들어, 시스템이 매일 오전 12:10에 스냅샷 복사본 하나를 생성하고 가장 최근의 복사본 2개를 보관하며 이 복사본을 "매일"이라고 지정할 수 있습니다.</block>
+  <block id="e80c18b83e4431b140cfd327235ef625" category="paragraph">백업 정책에는 레이블이 지정된 Snapshot 복사본을 대상 볼륨에 복제할 볼륨 및 유지할 복사본 수를 지정하는 규칙이 포함되어 있습니다. 백업 정책에 정의된 레이블은 스냅샷 정책에 정의된 하나 이상의 레이블과 일치해야 합니다. 그렇지 않으면 시스템에서 스냅샷 복사본을 복제할 수 없습니다.</block>
+  <block id="ae8361f179144c2fabb67c8d6de83a5e" category="paragraph">예를 들어 "매일" 및 "매주" 레이블이 포함된 백업 정책을 사용하면 이러한 레이블만 포함된 스냅샷 복사본이 복제됩니다. 다음 이미지와 같이 다른 스냅샷 복사본은 복제되지 않습니다.</block>
+  <block id="9146f7d49f8f0b1c7684522621105c16" category="inline-image-macro">이 그림에서는 스냅샷 정책, 소스 볼륨, 스냅샷 정책을 통해 생성된 스냅샷 복사본, 백업 정책을 기반으로 타겟 볼륨에 스냅샷 복사본 복제, "매일" 및 "매주" 레이블이 있는 스냅샷 복사본의 복제를 지정합니다.</block>
+  <block id="917f71613f685fca1f5480f2402e4328" category="paragraph"><block ref="917f71613f685fca1f5480f2402e4328" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="078de5bc4b102703fbb5d5f16eab4ac5" category="section-title">기본 정책 및 사용자 지정 정책</block>
+  <block id="82a50f0f6176439f52db3f00249bb062" category="paragraph">기본 스냅샷 정책은 매시간, 일별, 주별 스냅샷 복사본을 생성하여 6시간, 2일 및 2개의 주별 스냅샷 복사본을 유지합니다.</block>
+  <block id="ffd11b2f9d7cbf737e9c7fb470bccfa5" category="paragraph">기본 스냅샷 정책과 함께 기본 백업 정책을 쉽게 사용할 수 있습니다. 기본 백업 정책은 매일 및 매주 스냅샷 복사본을 복제하며 매일 7개 및 매주 52개의 스냅샷 복사본을 유지합니다.</block>
+  <block id="148658bf400475bd13a5edab6c870d2f" category="paragraph">사용자 지정 정책을 만드는 경우 해당 정책에 정의된 레이블이 일치해야 합니다. System Manager를 사용하여 사용자 지정 정책을 생성할 수 있습니다.</block>
+  <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">법적 고지</block>
+  <block id="c59ae8d7beeb519a23478ab048af482c" category="paragraph"><block ref="c59ae8d7beeb519a23478ab048af482c" category="inline-link-macro-rx"></block></block>
+  <block id="6f2ac1cf1da8ec34232c651d4bba0149" category="paragraph"><block ref="6f2ac1cf1da8ec34232c651d4bba0149" category="inline-link-macro-rx"></block></block>
+  <block id="4940124e8487cb4ea36f1511a195cf66" category="inline-link-macro">Cloud Manager 3.9에 대한 고지 사항</block>
+  <block id="c069fcc68c5dfa73ccc99924c836cae9" category="paragraph"><block ref="c069fcc68c5dfa73ccc99924c836cae9" category="inline-link-macro-rx"></block></block>
+  <block id="aa03d16eacb954c7af08d5001cd67507" category="doc">데이터 복제 설정</block>
+  <block id="745cc81e54713a1702ada65f4b222bce" category="paragraph">데이터 전송을 위한 일회성 데이터 복제 또는 재해 복구 또는 장기 보존을 위한 반복 일정을 선택하여 ONTAP 작업 환경 간에 데이터를 복제할 수 있습니다. 예를 들어, 재해 복구를 위해 사내 ONTAP 시스템에서 Cloud Volumes ONTAP로 데이터 복제를 설정할 수 있습니다.</block>
+  <block id="992753e7f234853a9e0f96d1ff637271" category="section-title">데이터 복제 요구 사항</block>
+  <block id="3f5c98f2da3fd65fbbfa955b13a433ab" category="paragraph">데이터를 복제하기 전에 Cloud Volumes ONTAP, 온프레미스 ONTAP 클러스터 또는 ONTAP용 Amazon FSx에 대한 특정 요구 사항이 충족되는지 확인해야 합니다.</block>
+  <block id="8e7eaac4ef6ddba0d9f93228ce3ac6e7" category="list-text">작업 환경</block>
+  <block id="4afa74830ae584f2b792dfe5b6c79ccc" category="list-text">아직 작성하지 않은 경우 데이터 복제 관계에서 소스와 타겟의 작업 환경을 생성해야 합니다.</block>
+  <block id="64c9a9d3cd7c3ca76cf19b78a96c9b79" category="inline-link">ONTAP 작업 환경을 위한 Amazon FSx를 생성합니다</block>
+  <block id="f903e0b8e0f1e5d10c61be1c83633ca0" category="list-text"><block ref="f903e0b8e0f1e5d10c61be1c83633ca0" category="inline-link-rx"></block></block>
+  <block id="a3272fd5c4bd1903de9b1b2f5e1665a8" category="inline-link">AWS에서 Cloud Volumes ONTAP를 시작합니다</block>
+  <block id="5fc68dd6c2f9e8f9867008288922972c" category="list-text"><block ref="5fc68dd6c2f9e8f9867008288922972c" category="inline-link-rx"></block></block>
+  <block id="70c84621a7336f391b4b7df86b5f1396" category="inline-link">Azure에서 Cloud Volumes ONTAP를 실행합니다</block>
+  <block id="382c836de95fd7a0d956bd916d408106" category="list-text"><block ref="382c836de95fd7a0d956bd916d408106" category="inline-link-rx"></block></block>
+  <block id="ce3503849689227dd8014f8ed3f5cb5e" category="inline-link">GCP에서 Cloud Volumes ONTAP를 시작합니다</block>
+  <block id="b1fc335b745b5be1ddedded19d077bf9" category="list-text"><block ref="b1fc335b745b5be1ddedded19d077bf9" category="inline-link-rx"></block></block>
+  <block id="6c0fb6078ec778ca2319e375a19e994b" category="inline-link">기존 Cloud Volumes ONTAP 시스템을 추가합니다</block>
+  <block id="c10b8a77856c1097f8b3038f1bfab45b" category="list-text"><block ref="c10b8a77856c1097f8b3038f1bfab45b" category="inline-link-rx"></block></block>
+  <block id="a1ebf612d281c8e7fb16bbfa253b9627" category="inline-link">ONTAP 클러스터에 대해 알아보십시오</block>
+  <block id="49aaf65c31a811a37b2627a951f6f6d2" category="list-text"><block ref="49aaf65c31a811a37b2627a951f6f6d2" category="inline-link-rx"></block></block>
+  <block id="3fbe74eae84714fcfdd21edafe54f77f" category="list-text">버전 요구 사항</block>
+  <block id="9739187f50db857f27b204b12e6d365e" category="inline-link">데이터 보호 전원 가이드</block>
+  <block id="45a002d1b0a2d3b7484b80cb82cbae5f" category="list-text">데이터를 복제하기 전에 소스 볼륨과 타겟 볼륨에서 호환되는 ONTAP 버전이 실행되고 있는지 확인해야 합니다. 자세한 내용은 를 참조하십시오<block ref="45ba42574012af0d87ad3af840143483" category="inline-link-rx"></block>.</block>
+  <block id="fe6efbb95f9a85a506ca5269c7f8ff90" category="list-text">Cloud Volumes ONTAP 관련 요구사항</block>
+  <block id="889d45df47a3ead91725048aa6da9442" category="list-text">인스턴스의 보안 그룹에는 필요한 인바운드 및 아웃바운드 규칙, 특히 ICMP 및 포트 11104 및 11105에 대한 규칙이 포함되어야 합니다.</block>
+  <block id="56a907169092bf547ac6f962beae2e1a" category="paragraph">이러한 규칙은 미리 정의된 보안 그룹에 포함되어 있습니다.</block>
+  <block id="c08b01fe5c09939cdbabcb370734dad8" category="list-text">서로 다른 서브넷에 있는 두 Cloud Volumes ONTAP 시스템 간에 데이터를 복제하려면 서브넷을 함께 라우팅해야 합니다(기본 설정).</block>
+  <block id="d5c8c6b85589a3255105df8b8a5a8e77" category="list-text">서로 다른 클라우드 공급자의 두 Cloud Volumes ONTAP 시스템 간에 데이터를 복제하려면 가상 네트워크 간에 VPN 연결이 있어야 합니다.</block>
+  <block id="4f98fe32c8059fcb89742310b7175e7f" category="list-text">ONTAP 클러스터별 요구사항</block>
+  <block id="8c4a805dde66a7461e7760fe982d066f" category="list-text">활성 SnapMirror 라이센스가 설치되어 있어야 합니다.</block>
+  <block id="e133ed2609aff998f4ad7507f5e823eb" category="list-text">클러스터가 사내에 있는 경우 회사 네트워크와 AWS, Azure 또는 GCP의 가상 네트워크에 연결되어 있어야 합니다. 일반적으로 VPN 연결입니다.</block>
+  <block id="1fbce003d68708feb24931b9e6366f50" category="list-text">ONTAP 클러스터는 추가 서브넷, 포트, 방화벽 및 클러스터 요구사항을 충족해야 합니다.</block>
+  <block id="88c6c83b92078bff672007a244edf6fe" category="inline-link">클러스터 및 SVM 피어링 Express 가이드</block>
+  <block id="eee57d9d3eea15be2047876cf152e294" category="paragraph">자세한 내용은 를 참조하십시오<block ref="7a715a3c6763f11dce8d04ecae2e7135" category="inline-link-rx"></block>.</block>
+  <block id="4f473a2a941d4fd7b4a68e3cd98e934c" category="list-text">ONTAP용 Amazon FSx에 대한 요구 사항</block>
+  <block id="e895824a462fdee602e050151c64f0a6" category="list-text">ONTAP 작업 환경을 위한 Amazon FSx는 데이터 복제 관계의 타겟이어야 합니다.</block>
+  <block id="7002d9ba5a8e7d19055405e260941870" category="paragraph">소스는 Cloud Volumes ONTAP 또는 온프레미스 ONTAP 클러스터일 수 있습니다.</block>
+  <block id="fec5e9f11ead982ba633a364695b9cff" category="list-text">Cloud Volumes ONTAP가 소스인 경우 VPC 피어링을 설정하거나 전송 게이트웨이를 사용하여 VPC 간 연결을 확인합니다.</block>
+  <block id="4bf49185216f4e917fd8dcc50ee1ff2c" category="list-text">사내 ONTAP 클러스터가 소스인 경우 직접 연결 또는 VPN 연결을 사용하여 사내 네트워크와 AWS VPC 간 연결을 확인합니다.</block>
+  <block id="58e046b3f4ec304e4456cda8151a574b" category="section-title">시스템 간 데이터 복제</block>
+  <block id="ab180709f75f8b8d74709444b839ccd3" category="paragraph">1회 데이터 복제를 선택하여 데이터를 복제할 수 있습니다. 이 복제를 사용하면 클라우드 간에 데이터를 이동하거나, 재해 복구 또는 장기 보존에 도움이 되는 반복 일정을 선택할 수 있습니다.</block>
+  <block id="29e71d65fc647320e822efb6ec422c56" category="list-text">Canvas 페이지에서 소스 볼륨이 포함된 작업 환경을 선택한 다음 볼륨을 복제할 작업 환경으로 끌어다 놓습니다.</block>
+  <block id="f058b2239a935219edfc3818d7b5cb9e" category="inline-image-macro">스크린샷: 데이터 복제 프로세스를 시작하기 위해 다른 작업 환경 위에 작업 환경을 배치하는 것을 보여 줍니다.</block>
+  <block id="f0fb2fde0c29810d08233a36012cb972" category="paragraph"><block ref="f0fb2fde0c29810d08233a36012cb972" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="362a388c30edcb2f99cceb3fe86d98c1" category="list-text">* 소스 및 대상 피어링 설정 *: 이 페이지가 나타나면 클러스터 피어 관계에 대한 모든 LIF를 선택합니다.</block>
+  <block id="bea31cd643e991ddda33528781bb08e5" category="paragraph">클러스터 피어가 _pair-wise full-mesh 연결_을 가지도록 인터클러스터 네트워크를 구성해야 합니다. 즉, 클러스터 피어 관계의 각 클러스터 쌍이 모든 인터클러스터 LIF 간에 연결을 가지도록 해야 합니다.</block>
+  <block id="2de4794fb8257073e92d6ea494fd0157" category="paragraph">이러한 페이지는 여러 LIF가 있는 ONTAP 클러스터가 소스 또는 대상인 경우 나타납니다.</block>
+  <block id="a6e88d0494a8fa6f3ae3b6727b0d269a" category="list-text">* 소스 볼륨 선택 *: 복제할 볼륨을 선택합니다.</block>
+  <block id="36e07509be5c7f032ab917fdca1c3155" category="list-text">* 대상 디스크 유형 및 계층화 *: 타겟이 Cloud Volumes ONTAP 시스템인 경우 대상 디스크 유형을 선택하고 데이터 계층화 활성화 여부를 선택합니다.</block>
+  <block id="fffe1c574a9d13338bd57b8f437e8b38" category="list-text">* 대상 볼륨 이름 *: 대상 볼륨 이름을 지정하고 대상 애그리게이트를 선택합니다.</block>
+  <block id="a72bddbb2c5ec4276f61eb5d4c72d29e" category="paragraph">대상이 ONTAP 클러스터인 경우 대상 스토리지 VM도 지정해야 합니다.</block>
+  <block id="70b03b0b5fddb323cd5727f0aff116da" category="list-text">* 최대 전송 속도 *: 데이터를 전송할 수 있는 최대 속도(초당 메가바이트)를 지정합니다.</block>
+  <block id="c4d4c57bab69ea2730de16df7ca7f541" category="paragraph">전송 속도를 제한해야 합니다. 무제한 속도가 다른 애플리케이션의 성능에 부정적인 영향을 줄 수 있으며 인터넷 성능에 영향을 줄 수 있습니다.</block>
+  <block id="dc7023569df1ae3b00637768e0eda066" category="list-text">* 복제 정책 *: 기본 정책을 선택하거나 * 추가 정책 * 을 클릭한 다음 고급 정책 중 하나를 선택합니다.</block>
+  <block id="43b69288e2e4056e2603dc7b20958252" category="inline-link-macro">복제 정책에 대해 자세히 알아보십시오</block>
+  <block id="38ae0f8e71302f90ed2bd78cc3558be1" category="paragraph">도움이 필요한 경우 <block ref="aa986145ecc84d384c81421dbd7256f8" category="inline-link-macro-rx"></block>.</block>
+  <block id="94b8e29e9b4ae2edec5679fafc448461" category="inline-link-macro">백업 정책의 작동 방식에 대해 알아보십시오</block>
+  <block id="07c79d9eb85b0d23c55a7b9b67cf02d8" category="paragraph">사용자 지정 백업(SnapVault) 정책을 선택한 경우 정책과 연결된 레이블이 소스 볼륨의 스냅샷 복사본 레이블과 일치해야 합니다. 자세한 내용은 <block ref="75de9650bf9d481877dc0d18e86ffa75" category="inline-link-macro-rx"></block>.</block>
+  <block id="d3b2b050bb9494cae757b48c9e54e869" category="list-text">* 일정 *: 1회 복사본 또는 반복 일정을 선택합니다.</block>
+  <block id="eab21f14d3f6250b2de779be87b8404e" category="paragraph">몇 가지 기본 스케줄을 사용할 수 있습니다. 다른 스케줄을 지정하려면 System Manager를 사용하여 _destination_cluster에 새 스케줄을 생성해야 합니다.</block>
+  <block id="b651c9a4bed137033ce440a73927ffcf" category="list-text">* Review * (검토 *): 선택 사항을 검토하고 * Go * (이동 *)를 클릭합니다.</block>
+  <block id="eed124d262a3b5245da6792903502a1f" category="paragraph">Cloud Manager가 데이터 복제 프로세스를 시작합니다. 복제 서비스에서 볼륨 관계에 대한 세부 정보를 볼 수 있습니다.</block>
+  <block id="aeeec0576922eb4490b5fabadc6c4e36" category="summary">NetApp SnapMirror는 LAN 또는 WAN을 통해 데이터를 고속으로 복제하여 가상 환경과 기존 환경 모두에서 높은 데이터 가용성과 빠른 데이터 복제를 실현할 수 있습니다. 데이터를 NetApp 스토리지 시스템에 복제하고 2차 데이터를 지속적으로 업데이트함으로써 데이터가 최신 상태로 유지되고 필요할 때마다 사용할 수 있고 외부 복제 서버가 필요하지 않습니다.</block>
+  <block id="e60519215887d589e148f68a2f5d2a06" category="doc">복제 서비스에 대해 자세히 알아보십시오</block>
+  <block id="98f770b0af18ca763421bac22b4b6805" category="section-title">피처</block>
+  <block id="4d8208136280cbaba3cab05e5996a3a8" category="list-text">ONTAP 스토리지 시스템 간에 데이터를 복제하여 클라우드 또는 클라우드 간 백업 및 재해 복구를 지원합니다.</block>
+  <block id="58598c037819ab3e58b8ee6d0d634246" category="list-text">고가용성으로 DR 환경의 안정성을 보장합니다.</block>
+  <block id="6c12db213eb53a8ef7d470254e0395be" category="list-text">ONTAP 스토리지 간의 효율적인 블록 레벨 복제는 DR 및 백업을 위한 세분화된 복구 시점을 통해 빠르고 효율적입니다.</block>
+  <block id="20b4f77bd00b4f63a49ec8e08f3bf6a6" category="section-title">비용</block>
+  <block id="51d8157d48cfe9c64b3f0f386d2e4e7b" category="paragraph">NetApp은 복제 서비스 사용에 대한 비용을 청구하지 않지만, 클라우드 공급자에게 데이터 수신 및 송신 비용이 있는지 확인해야 합니다.</block>
+  <block id="744db3ac634a7aa94269971ca3dc965e" category="section-title">지원되는 작업 환경</block>
+  <block id="33a6dd69443b97d9eae9c88809da5d88" category="paragraph">Cloud Manager를 사용하면 다음 유형의 작업 환경 간에 데이터를 복제할 수 있습니다.</block>
+  <block id="9fd9b4e1af5d0e8b46abbd52a5c740cd" category="cell">소스 작업 환경</block>
+  <block id="e4543e565352b9e4f4e71c2f648026f6" category="cell">지원되는 대상 작업 환경</block>
+  <block id="117bdbda976fe8b3212bc3b6327a0a1b" category="cell">Cloud Volumes ONTAP</block>
+  <block id="18cf072964a583150dd247485ba75b92" category="list-text">ONTAP용 Amazon FSx</block>
+  <block id="c17ce6a7cdcb97581c6d5603ec7d447a" category="list-text">온프레미스 ONTAP 클러스터</block>
+  <block id="b553c40a28c07760917a84d00649f7fd" category="section-title">데이터 복제 작동 방식</block>
+  <block id="e445c14748daf3ca002770b51d99fc5e" category="paragraph">Cloud Manager는 SnapMirror 및 SnapVault 기술을 사용하여 별도의 ONTAP 시스템에 있는 볼륨 간 데이터 복제를 단순화합니다. 소스 볼륨과 타겟 볼륨을 확인한 다음 복제 정책 및 일정을 선택하기만 하면 됩니다.</block>
+  <block id="cac80a54492c3c29d5dde82753de238c" category="paragraph">Cloud Volumes ONTAP의 경우 Cloud Manager가 필요한 디스크를 구매하고 관계를 구성하고 복제 정책을 적용한 다음 볼륨 간 기본 전송을 시작합니다.</block>
+  <block id="f2c34e95577ee850c803e71a908cf1ef" category="admonition">기본 전송에는 소스 데이터의 전체 복사본이 포함됩니다. 후속 전송에는 소스 데이터의 차등 복제본이 포함됩니다.</block>
+  <block id="cc20b848be9552c96e9f46ed40db533d" category="section-title">지원되는 데이터 보호 구성</block>
+  <block id="6d6b0ddfbb8cf202faee1b560ec76688" category="paragraph">Cloud Manager는 단순, 팬아웃 및 계단식 데이터 보호 구성을 지원합니다.</block>
+  <block id="c1400343880c81f40f5a3faf804c86ae" category="list-text">간단한 구성에서는 볼륨 A에서 볼륨 B로 복제가 수행됩니다</block>
+  <block id="efec681cbb459f433d2291a71e215461" category="list-text">팬아웃 구성에서는 볼륨 A에서 여러 대상으로 복제가 수행됩니다.</block>
+  <block id="7a850141034065e0218996db71a2ef0c" category="list-text">다중 구간 구성에서는 볼륨 A에서 볼륨 B로, 볼륨 B에서 볼륨 C로 복제가 수행됩니다</block>
+  <block id="dc699e704dec5502b9aa219f9381ad94" category="doc">복제 설명서</block>
+  <block id="3c10116b37b407ac79092a38ffb292e4" category="summary">NetApp 기술 지원으로 지원 케이스를 생성하기 전에 NetApp Support 사이트 계정을 Cloud Manager에 추가한 다음 지원을 위해 등록해야 합니다.</block>
+  <block id="42748df9eaa0be17ddc5cc1593cf57ab" category="doc">지원을 위해 등록하십시오</block>
+  <block id="d53e2559d6ace0e907fc57192bf286b6" category="paragraph"><block ref="d53e2559d6ace0e907fc57192bf286b6" category="inline-link-macro-rx"></block></block>
+  <block id="7ff191df90fac0fa94ab5c2b5101a5e9" category="sidebar">모든 Cloud Manager 설명서</block>
+  <block id="7596270426e8c5f92be308ff330e0e64" category="sidebar">복제 문서</block>
+  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">릴리스 정보</block>
+  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">시작하십시오</block>
+  <block id="c27a58445f6be9881526a37e46bb7d26" category="sidebar">데이터 복제 관리</block>
+  <block id="0460583622f03a52d7693094d6fa2452" category="sidebar">개념</block>
+  <block id="fa26829830efe73376071e3b30f66d6a" category="sidebar">복제 정책</block>
+  <block id="9f02509e5496e861df4c341dba05386e" category="sidebar">백업 정책</block>
+  <block id="0adc03eac86772ad2c75c8f140be417e" category="sidebar">지식 및 지원</block>
+  <block id="96dbe21e840f318daaf871cafa9f1d1f" category="sidebar">복제 서비스를 사용합니다</block>
+  <block id="813011e2103649bb71f124adedcc10ea" category="sidebar">블로그 커뮤니티</block>
+  <block id="dd490b81914dd945601e442a41cb4222" category="sidebar">NetApp 커뮤니티</block>
+  <block id="ff6c37cbc252e306a6b4e390ec13cbc1" category="sidebar">Cloud Central 블로그</block>
+  <block id="ad203e818e0c9d7f42f1c260b33875f3" category="sidebar">클라우드 웨비나</block>
+</blocks>

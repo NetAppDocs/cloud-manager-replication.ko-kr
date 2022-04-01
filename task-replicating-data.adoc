@@ -1,0 +1,117 @@
+---
+sidebar: sidebar 
+permalink: task-replicating-data.html 
+keywords: ontap, cluster, discover, manage, cloud manager, hybrid cloud, replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, fanout, cascade, source, destination, schedule, relationship, max transfer, maximum transfer rate, rate, transfer rate, intercluster lif, replication requirement, requirements, disaster recovery, DR, archive, archiving, retention, amazon fsx for ontap, fsx for ontap 
+summary: Cloud Manager 작업 환경 간에 데이터를 복제할 수 있습니다. 1회 데이터 복제를 선택하여 데이터를 클라우드 간에 이동하거나, 재해 복구 또는 장기 보존을 위한 반복 일정을 선택할 수 있습니다. 
+---
+= 데이터 복제 설정
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+데이터 전송을 위한 일회성 데이터 복제 또는 재해 복구 또는 장기 보존을 위한 반복 일정을 선택하여 ONTAP 작업 환경 간에 데이터를 복제할 수 있습니다. 예를 들어, 재해 복구를 위해 사내 ONTAP 시스템에서 Cloud Volumes ONTAP로 데이터 복제를 설정할 수 있습니다.
+
+
+
+== 데이터 복제 요구 사항
+
+데이터를 복제하기 전에 Cloud Volumes ONTAP, 온프레미스 ONTAP 클러스터 또는 ONTAP용 Amazon FSx에 대한 특정 요구 사항이 충족되는지 확인해야 합니다.
+
+작업 환경:: 아직 작성하지 않은 경우 데이터 복제 관계에서 소스와 타겟의 작업 환경을 생성해야 합니다.
++
+--
+* https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/task-creating-fsx-working-environment.html["ONTAP 작업 환경을 위한 Amazon FSx를 생성합니다"^]
+* https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-otc-aws.html["AWS에서 Cloud Volumes ONTAP를 시작합니다"^]
+* https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-otc-azure.html["Azure에서 Cloud Volumes ONTAP를 실행합니다"^]
+* https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-gcp.html["GCP에서 Cloud Volumes ONTAP를 시작합니다"^]
+* https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-adding-systems.html["기존 Cloud Volumes ONTAP 시스템을 추가합니다"^]
+* https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html["ONTAP 클러스터에 대해 알아보십시오"^]
+
+
+--
+버전 요구 사항:: 데이터를 복제하기 전에 소스 볼륨과 타겟 볼륨에서 호환되는 ONTAP 버전이 실행되고 있는지 확인해야 합니다. 자세한 내용은 를 참조하십시오 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/GUID-0810D764-4CEA-4683-8280-032433B1886B.html["데이터 보호 전원 가이드"^].
+Cloud Volumes ONTAP 관련 요구사항::
++
+--
+* 인스턴스의 보안 그룹에는 필요한 인바운드 및 아웃바운드 규칙, 특히 ICMP 및 포트 11104 및 11105에 대한 규칙이 포함되어야 합니다.
++
+이러한 규칙은 미리 정의된 보안 그룹에 포함되어 있습니다.
+
+* 서로 다른 서브넷에 있는 두 Cloud Volumes ONTAP 시스템 간에 데이터를 복제하려면 서브넷을 함께 라우팅해야 합니다(기본 설정).
+* 서로 다른 클라우드 공급자의 두 Cloud Volumes ONTAP 시스템 간에 데이터를 복제하려면 가상 네트워크 간에 VPN 연결이 있어야 합니다.
+
+
+--
+ONTAP 클러스터별 요구사항::
++
+--
+* 활성 SnapMirror 라이센스가 설치되어 있어야 합니다.
+* 클러스터가 사내에 있는 경우 회사 네트워크와 AWS, Azure 또는 GCP의 가상 네트워크에 연결되어 있어야 합니다. 일반적으로 VPN 연결입니다.
+* ONTAP 클러스터는 추가 서브넷, 포트, 방화벽 및 클러스터 요구사항을 충족해야 합니다.
++
+자세한 내용은 를 참조하십시오 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["클러스터 및 SVM 피어링 Express 가이드"^].
+
+
+
+--
+ONTAP용 Amazon FSx에 대한 요구 사항::
++
+--
+* ONTAP 작업 환경을 위한 Amazon FSx는 데이터 복제 관계의 타겟이어야 합니다.
++
+소스는 Cloud Volumes ONTAP 또는 온프레미스 ONTAP 클러스터일 수 있습니다.
+
+* Cloud Volumes ONTAP가 소스인 경우 VPC 피어링을 설정하거나 전송 게이트웨이를 사용하여 VPC 간 연결을 확인합니다.
+* 사내 ONTAP 클러스터가 소스인 경우 직접 연결 또는 VPN 연결을 사용하여 사내 네트워크와 AWS VPC 간 연결을 확인합니다.
+
+
+--
+
+
+
+
+== 시스템 간 데이터 복제
+
+1회 데이터 복제를 선택하여 데이터를 복제할 수 있습니다. 이 복제를 사용하면 클라우드 간에 데이터를 이동하거나, 재해 복구 또는 장기 보존에 도움이 되는 반복 일정을 선택할 수 있습니다.
+
+.단계
+. Canvas 페이지에서 소스 볼륨이 포함된 작업 환경을 선택한 다음 볼륨을 복제할 작업 환경으로 끌어다 놓습니다.
++
+image:screenshot_drag_and_drop.gif["스크린샷: 데이터 복제 프로세스를 시작하기 위해 다른 작업 환경 위에 작업 환경을 배치하는 것을 보여 줍니다."]
+
+. * 소스 및 대상 피어링 설정 *: 이 페이지가 나타나면 클러스터 피어 관계에 대한 모든 LIF를 선택합니다.
++
+클러스터 피어가 _pair-wise full-mesh 연결_을 가지도록 인터클러스터 네트워크를 구성해야 합니다. 즉, 클러스터 피어 관계의 각 클러스터 쌍이 모든 인터클러스터 LIF 간에 연결을 가지도록 해야 합니다.
+
++
+이러한 페이지는 여러 LIF가 있는 ONTAP 클러스터가 소스 또는 대상인 경우 나타납니다.
+
+. * 소스 볼륨 선택 *: 복제할 볼륨을 선택합니다.
+. * 대상 디스크 유형 및 계층화 *: 타겟이 Cloud Volumes ONTAP 시스템인 경우 대상 디스크 유형을 선택하고 데이터 계층화 활성화 여부를 선택합니다.
+. * 대상 볼륨 이름 *: 대상 볼륨 이름을 지정하고 대상 애그리게이트를 선택합니다.
++
+대상이 ONTAP 클러스터인 경우 대상 스토리지 VM도 지정해야 합니다.
+
+. * 최대 전송 속도 *: 데이터를 전송할 수 있는 최대 속도(초당 메가바이트)를 지정합니다.
++
+전송 속도를 제한해야 합니다. 무제한 속도가 다른 애플리케이션의 성능에 부정적인 영향을 줄 수 있으며 인터넷 성능에 영향을 줄 수 있습니다.
+
+. * 복제 정책 *: 기본 정책을 선택하거나 * 추가 정책 * 을 클릭한 다음 고급 정책 중 하나를 선택합니다.
++
+도움이 필요한 경우 link:concept-replication-policies.html["복제 정책에 대해 자세히 알아보십시오"].
+
++
+사용자 지정 백업(SnapVault) 정책을 선택한 경우 정책과 연결된 레이블이 소스 볼륨의 스냅샷 복사본 레이블과 일치해야 합니다. 자세한 내용은 link:concept-replication-policies.html#how-backup-policies-work["백업 정책의 작동 방식에 대해 알아보십시오"].
+
+. * 일정 *: 1회 복사본 또는 반복 일정을 선택합니다.
++
+몇 가지 기본 스케줄을 사용할 수 있습니다. 다른 스케줄을 지정하려면 System Manager를 사용하여 _destination_cluster에 새 스케줄을 생성해야 합니다.
+
+. * Review * (검토 *): 선택 사항을 검토하고 * Go * (이동 *)를 클릭합니다.
+
+
+Cloud Manager가 데이터 복제 프로세스를 시작합니다. 복제 서비스에서 볼륨 관계에 대한 세부 정보를 볼 수 있습니다.

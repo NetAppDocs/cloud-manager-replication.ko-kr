@@ -1,0 +1,61 @@
+---
+settings:
+  name: Replication
+  platform: cloud
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: ko-kr,us-en,ja-jp,zh-cn
+sidebar:
+  entries:
+  - title: 모든 Cloud Manager 설명서
+    url: https://docs.netapp.com/us-en/cloud-manager-family
+  - title: 복제 문서
+    url: "/index.html"
+  - title: 릴리스 정보
+    url: "/whats-new.html"
+  - title: 시작하십시오
+    entries:
+    - title: 복제 서비스에 대해 자세히 알아보십시오
+      url: "/concept-replication.html"
+    - title: 데이터 복제 설정
+      url: "/task-replicating-data.html"
+  - title: 데이터 복제 관리
+    url: "/task-managing-replication.html"
+  - title: 개념
+    entries:
+    - title: 복제 정책
+      url: "/concept-replication-policies.html"
+    - title: 백업 정책
+      url: "/concept-backup-policies.html"
+  - title: 지식 및 지원
+    entries:
+    - title: 지원을 위해 등록하십시오
+      url: "/task-support-registration.html"
+    - title: 도움을 받으십시오
+      url: "/task-get-help.html"
+  - title: 법적 고지
+    url: "/legal-notices.html"
+homepage:
+  tiles:
+  - title: 시작하십시오
+    links:
+    - title: 복제 서비스에 대해 자세히 알아보십시오
+      url: concept-replication.html
+    - title: 데이터 복제 설정
+      url: task-replicating-data.html
+  - title: 복제 서비스를 사용합니다
+    links:
+    - title: 데이터 복제 관리
+      url: task-managing-replication.html
+  - title: 블로그 커뮤니티
+    links:
+    - title: NetApp 커뮤니티
+      url: https://community.netapp.com/t5/Cloud-Data-Services/ct-p/CDS
+    - title: Cloud Central 블로그
+      url: https://cloud.netapp.com/blog
+    - title: 클라우드 웨비나
+      url: https://cloud.netapp.com/events
+product-family: {}

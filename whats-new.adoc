@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: whats-new.html 
+keywords: 'what"s new, features, new, release notes, bugs, limitations, known issues, enhancements, fixes' 
+summary: 복제 서비스의 새로운 기능에 대해 알아보십시오. 
+---
+= 새로운 기능
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+복제 서비스의 새로운 기능에 대해 알아보십시오.
+
+
+
+== 2021년 9월 2일
+
+
+
+=== ONTAP용 Amazon FSx 지원
+
+이제 Cloud Volumes ONTAP 시스템 또는 온프레미스 ONTAP 클러스터에서 ONTAP 파일 시스템용 Amazon FSx로 데이터를 복제할 수 있습니다.
+
+
+
+== 2021년 5월 5일
+
+
+
+=== 인터페이스가 재설계되었습니다
+
+사용 편의성과 Cloud Manager 사용자 인터페이스의 현재 모양과 느낌을 맞추기 위해 Replication 탭을 다시 설계했습니다.
+
+image:replication.gif["볼륨 관계 목록을 보여 주는 Cloud Manager의 재설계된 복제 탭 스크린샷"]
