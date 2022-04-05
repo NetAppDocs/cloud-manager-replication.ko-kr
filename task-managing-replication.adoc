@@ -38,7 +38,7 @@ image:screenshot_replication_managing.gif["스크린샷: 복제 상태 페이지
 | 정보 | 볼륨 관계에 대한 세부 정보: 전송 정보, 마지막 전송 정보, 볼륨에 대한 세부 정보 및 관계에 할당된 보호 정책에 대한 정보를 표시합니다. 
 
 
-| 휴식 | 소스 볼륨과 타겟 볼륨 간의 관계를 끊은 후 데이터 액세스를 위해 타겟 볼륨을 활성화합니다. 이 옵션은 일반적으로 소스 볼륨에서 데이터 손상, 실수로 인한 삭제 또는 오프라인 상태와 같은 이벤트로 인해 데이터를 제공할 수 없는 경우에 사용됩니다. 데이터 액세스를 위한 대상 볼륨을 구성하고 소스 볼륨을 재활성화하는 방법에 대한 자세한 내용은 를 참조하십시오 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-sm-ic-fr/home.html["ONTAP 9 볼륨 재해 복구 익스프레스 가이드"^]. 
+| 휴식 | 소스 볼륨과 타겟 볼륨 간의 관계를 끊은 후 데이터 액세스를 위해 타겟 볼륨을 활성화합니다. 이 옵션은 일반적으로 소스 볼륨에서 데이터 손상, 실수로 인한 삭제 또는 오프라인 상태와 같은 이벤트로 인해 데이터를 제공할 수 없는 경우에 사용됩니다.https://docs.netapp.com/us-en/ontap-sm-classic/volume-disaster-recovery/index.html["데이터 액세스를 위해 대상 볼륨을 구성하고 ONTAP 설명서에서 소스 볼륨을 다시 활성화하는 방법을 알아보십시오"^] 
 
 
 | 재동기화  a| 
@@ -47,7 +47,7 @@ image:screenshot_replication_managing.gif["스크린샷: 복제 상태 페이지
 
 NOTE: 볼륨을 재동기화하면 대상 볼륨의 내용이 소스 볼륨의 컨텐츠로 덮어쓰여집니다.
 
-대상 볼륨에서 소스 볼륨으로 데이터를 재동기화하는 역방향 재동기화를 수행하려면 을 참조하십시오 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-sm-ic-fr/home.html["ONTAP 9 볼륨 재해 복구 익스프레스 가이드"^].
+대상 볼륨에서 소스 볼륨으로 데이터를 재동기화하는 역방향 재동기화를 수행하는 방법을 알아보려면 로 이동합니다 https://docs.netapp.com/us-en/ontap-sm-classic/volume-disaster-recovery/index.html["ONTAP 설명서"^].
 
 
 

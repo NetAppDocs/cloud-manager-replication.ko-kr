@@ -47,13 +47,10 @@
   <block id="a82be0f551b8708bc08eb33cd9ded0cf" category="cell">정보</block>
   <block id="d94a71d39d4b5957a9cb08d7b25dc8d1" category="cell">볼륨 관계에 대한 세부 정보: 전송 정보, 마지막 전송 정보, 볼륨에 대한 세부 정보 및 관계에 할당된 보호 정책에 대한 정보를 표시합니다.</block>
   <block id="e4c38d6d45baf080943d323dd51a2ce8" category="cell">휴식</block>
-  <block id="3592520f476679c41ae085dbea13f855" category="inline-link">ONTAP 9 볼륨 재해 복구 익스프레스 가이드</block>
-  <block id="f2bbb0bef78070a1fd8268d9772a2d0c" category="cell">소스 볼륨과 타겟 볼륨 간의 관계를 끊은 후 데이터 액세스를 위해 타겟 볼륨을 활성화합니다. 이 옵션은 일반적으로 소스 볼륨에서 데이터 손상, 실수로 인한 삭제 또는 오프라인 상태와 같은 이벤트로 인해 데이터를 제공할 수 없는 경우에 사용됩니다. 데이터 액세스를 위한 대상 볼륨을 구성하고 소스 볼륨을 재활성화하는 방법에 대한 자세한 내용은 를 참조하십시오<block ref="af502c2f8fb660944e2ad52aad1efcc3" category="inline-link-rx"></block>.</block>
   <block id="45ada1a8b02e7bf10200aedcf56d13c8" category="cell">재동기화</block>
   <block id="d41d8cd98f00b204e9800998ecf8427e" category="doc"></block>
   <block id="56f83d4dac34839a8f3a283bafd276e8" category="paragraph">볼륨 간의 끊어진 관계를 다시 설정하고 정의된 일정에 따라 데이터 복제를 재개합니다.</block>
   <block id="f43fdb6878de7980d30d532ea44e0baf" category="admonition">볼륨을 재동기화하면 대상 볼륨의 내용이 소스 볼륨의 컨텐츠로 덮어쓰여집니다.</block>
-  <block id="5209b5da9877de39bd3385b8056be084" category="paragraph">대상 볼륨에서 소스 볼륨으로 데이터를 재동기화하는 역방향 재동기화를 수행하려면 을 참조하십시오<block ref="af502c2f8fb660944e2ad52aad1efcc3" category="inline-link-rx"></block>.</block>
   <block id="fb1729afce23e1bd1840f0ba32ef8e91" category="cell">재동기화</block>
   <block id="fdd14ac0ba0eae4cebe22311577994f3" category="cell">소스 및 대상 볼륨의 역할을 바꿉니다. 원본 소스 볼륨의 컨텐츠는 대상 볼륨의 컨텐츠로 덮어쓰여집니다. 이 기능은 오프라인 상태인 소스 볼륨을 다시 활성화하려는 경우에 유용합니다. 마지막 데이터 복제와 소스 볼륨이 비활성화된 시간 사이에 원본 소스 볼륨에 기록된 데이터는 보존되지 않습니다.</block>
   <block id="67d85e3bd91876173776dc6f189ff7ac" category="cell">일정 편집</block>
@@ -92,7 +89,6 @@
   <block id="8e7eaac4ef6ddba0d9f93228ce3ac6e7" category="list-text">작업 환경</block>
   <block id="4afa74830ae584f2b792dfe5b6c79ccc" category="list-text">아직 작성하지 않은 경우 데이터 복제 관계에서 소스와 타겟의 작업 환경을 생성해야 합니다.</block>
   <block id="64c9a9d3cd7c3ca76cf19b78a96c9b79" category="inline-link">ONTAP 작업 환경을 위한 Amazon FSx를 생성합니다</block>
-  <block id="f903e0b8e0f1e5d10c61be1c83633ca0" category="list-text"><block ref="f903e0b8e0f1e5d10c61be1c83633ca0" category="inline-link-rx"></block></block>
   <block id="a3272fd5c4bd1903de9b1b2f5e1665a8" category="inline-link">AWS에서 Cloud Volumes ONTAP를 시작합니다</block>
   <block id="5fc68dd6c2f9e8f9867008288922972c" category="list-text"><block ref="5fc68dd6c2f9e8f9867008288922972c" category="inline-link-rx"></block></block>
   <block id="70c84621a7336f391b4b7df86b5f1396" category="inline-link">Azure에서 Cloud Volumes ONTAP를 실행합니다</block>
@@ -104,8 +100,6 @@
   <block id="a1ebf612d281c8e7fb16bbfa253b9627" category="inline-link">ONTAP 클러스터에 대해 알아보십시오</block>
   <block id="49aaf65c31a811a37b2627a951f6f6d2" category="list-text"><block ref="49aaf65c31a811a37b2627a951f6f6d2" category="inline-link-rx"></block></block>
   <block id="3fbe74eae84714fcfdd21edafe54f77f" category="list-text">버전 요구 사항</block>
-  <block id="9739187f50db857f27b204b12e6d365e" category="inline-link">데이터 보호 전원 가이드</block>
-  <block id="45a002d1b0a2d3b7484b80cb82cbae5f" category="list-text">데이터를 복제하기 전에 소스 볼륨과 타겟 볼륨에서 호환되는 ONTAP 버전이 실행되고 있는지 확인해야 합니다. 자세한 내용은 를 참조하십시오<block ref="45ba42574012af0d87ad3af840143483" category="inline-link-rx"></block>.</block>
   <block id="fe6efbb95f9a85a506ca5269c7f8ff90" category="list-text">Cloud Volumes ONTAP 관련 요구사항</block>
   <block id="889d45df47a3ead91725048aa6da9442" category="list-text">인스턴스의 보안 그룹에는 필요한 인바운드 및 아웃바운드 규칙, 특히 ICMP 및 포트 11104 및 11105에 대한 규칙이 포함되어야 합니다.</block>
   <block id="56a907169092bf547ac6f962beae2e1a" category="paragraph">이러한 규칙은 미리 정의된 보안 그룹에 포함되어 있습니다.</block>
@@ -115,8 +109,6 @@
   <block id="8c4a805dde66a7461e7760fe982d066f" category="list-text">활성 SnapMirror 라이센스가 설치되어 있어야 합니다.</block>
   <block id="e133ed2609aff998f4ad7507f5e823eb" category="list-text">클러스터가 사내에 있는 경우 회사 네트워크와 AWS, Azure 또는 GCP의 가상 네트워크에 연결되어 있어야 합니다. 일반적으로 VPN 연결입니다.</block>
   <block id="1fbce003d68708feb24931b9e6366f50" category="list-text">ONTAP 클러스터는 추가 서브넷, 포트, 방화벽 및 클러스터 요구사항을 충족해야 합니다.</block>
-  <block id="88c6c83b92078bff672007a244edf6fe" category="inline-link">클러스터 및 SVM 피어링 Express 가이드</block>
-  <block id="eee57d9d3eea15be2047876cf152e294" category="paragraph">자세한 내용은 를 참조하십시오<block ref="7a715a3c6763f11dce8d04ecae2e7135" category="inline-link-rx"></block>.</block>
   <block id="4f473a2a941d4fd7b4a68e3cd98e934c" category="list-text">ONTAP용 Amazon FSx에 대한 요구 사항</block>
   <block id="e895824a462fdee602e050151c64f0a6" category="list-text">ONTAP 작업 환경을 위한 Amazon FSx는 데이터 복제 관계의 타겟이어야 합니다.</block>
   <block id="7002d9ba5a8e7d19055405e260941870" category="paragraph">소스는 Cloud Volumes ONTAP 또는 온프레미스 ONTAP 클러스터일 수 있습니다.</block>
@@ -140,7 +132,6 @@
   <block id="43b69288e2e4056e2603dc7b20958252" category="inline-link-macro">복제 정책에 대해 자세히 알아보십시오</block>
   <block id="38ae0f8e71302f90ed2bd78cc3558be1" category="paragraph">도움이 필요한 경우 <block ref="aa986145ecc84d384c81421dbd7256f8" category="inline-link-macro-rx"></block>.</block>
   <block id="94b8e29e9b4ae2edec5679fafc448461" category="inline-link-macro">백업 정책의 작동 방식에 대해 알아보십시오</block>
-  <block id="07c79d9eb85b0d23c55a7b9b67cf02d8" category="paragraph">사용자 지정 백업(SnapVault) 정책을 선택한 경우 정책과 연결된 레이블이 소스 볼륨의 스냅샷 복사본 레이블과 일치해야 합니다. 자세한 내용은 <block ref="75de9650bf9d481877dc0d18e86ffa75" category="inline-link-macro-rx"></block>.</block>
   <block id="d3b2b050bb9494cae757b48c9e54e869" category="list-text">* 일정 *: 1회 복사본 또는 반복 일정을 선택합니다.</block>
   <block id="eab21f14d3f6250b2de779be87b8404e" category="paragraph">몇 가지 기본 스케줄을 사용할 수 있습니다. 다른 스케줄을 지정하려면 System Manager를 사용하여 _destination_cluster에 새 스케줄을 생성해야 합니다.</block>
   <block id="b651c9a4bed137033ce440a73927ffcf" category="list-text">* Review * (검토 *): 선택 사항을 검토하고 * Go * (이동 *)를 클릭합니다.</block>
@@ -191,4 +182,15 @@
   <block id="40f78d193b858589ad7df4dd4ce61ad6" category="inline-link">데이터 복제를 설정하는 방법에 대해 알아보십시오</block>
   <block id="1e56755e05ec049b30c49b9d53744ca1" category="paragraph"><block ref="0337e364432fca0f343e5f2660661b77" category="inline-link-rx"></block>.</block>
   <block id="afd129f297b503a0e765f8dcc6f0d4d4" category="paragraph"><block ref="afd129f297b503a0e765f8dcc6f0d4d4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f0cd8087559cf56fb0d34726dbd85d38" category="inline-link">데이터 액세스를 위해 대상 볼륨을 구성하고 ONTAP 설명서에서 소스 볼륨을 다시 활성화하는 방법을 알아보십시오</block>
+  <block id="eded94fe54d9a9c86f0d510180c58a5d" category="cell">소스 볼륨과 타겟 볼륨 간의 관계를 끊은 후 데이터 액세스를 위해 타겟 볼륨을 활성화합니다. 이 옵션은 일반적으로 소스 볼륨에서 데이터 손상, 실수로 인한 삭제 또는 오프라인 상태와 같은 이벤트로 인해 데이터를 제공할 수 없는 경우에 사용됩니다.<block ref="7a7ac6ccb9be4e5f4f0b719a95b68333" category="inline-link-rx"></block></block>
+  <block id="eb75aeb3b4b2b9734ba3e52f5483f0b2" category="inline-link">ONTAP 설명서</block>
+  <block id="e990be7a16b6b4357342c71daaf2bbca" category="paragraph">대상 볼륨에서 소스 볼륨으로 데이터를 재동기화하는 역방향 재동기화를 수행하는 방법을 알아보려면 로 이동합니다<block ref="ab01f841914c89d9d9ffbe330b1e0c0f" category="inline-link-rx"></block>.</block>
+  <block id="6cd346b36825d1f1cef046571571fce0" category="list-text"><block ref="6cd346b36825d1f1cef046571571fce0" category="inline-link-rx"></block></block>
+  <block id="5ab11c0b1a095a5aa6623bf54430fb4b" category="list-text">데이터를 복제하기 전에 소스 볼륨과 타겟 볼륨에서 호환되는 ONTAP 버전이 실행되고 있는지 확인해야 합니다.</block>
+  <block id="49a1e754247eba0034ec2a2b3dea46b0" category="inline-link">SnapMirror 관계에 대한 호환되는 ONTAP 버전을 봅니다</block>
+  <block id="b8c6e83fa255fcfab352a5b54339fdb8" category="paragraph"><block ref="b8c6e83fa255fcfab352a5b54339fdb8" category="inline-link-rx"></block></block>
+  <block id="d7bb556723e915c43fe4fd9b0f90d545" category="inline-link">ONTAP 설명서에서 클러스터 피어링을 위한 사전 요구 사항을 확인하십시오</block>
+  <block id="54aa7fca826fcb0f6caefb80a82fe037" category="paragraph"><block ref="54aa7fca826fcb0f6caefb80a82fe037" category="inline-link-rx"></block></block>
+  <block id="d0c8bcc8105dd12af5250cd475e35814" category="paragraph">사용자 지정 백업(SnapVault) 정책을 선택한 경우 정책과 연결된 레이블이 소스 볼륨의 스냅샷 복사본 레이블과 일치해야 합니다. 자세한 내용은 <block ref="1da422ecee672d98d1632cce950d0eeb" category="inline-link-macro-rx"></block>.</block>
 </blocks>

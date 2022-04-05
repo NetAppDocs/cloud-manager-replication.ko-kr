@@ -24,7 +24,7 @@ summary: Cloud Manager 작업 환경 간에 데이터를 복제할 수 있습니
 작업 환경:: 아직 작성하지 않은 경우 데이터 복제 관계에서 소스와 타겟의 작업 환경을 생성해야 합니다.
 +
 --
-* https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/task-creating-fsx-working-environment.html["ONTAP 작업 환경을 위한 Amazon FSx를 생성합니다"^]
+* https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/start/task-getting-started-fsx.html["ONTAP 작업 환경을 위한 Amazon FSx를 생성합니다"^]
 * https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-otc-aws.html["AWS에서 Cloud Volumes ONTAP를 시작합니다"^]
 * https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-otc-azure.html["Azure에서 Cloud Volumes ONTAP를 실행합니다"^]
 * https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-gcp.html["GCP에서 Cloud Volumes ONTAP를 시작합니다"^]
@@ -33,7 +33,12 @@ summary: Cloud Manager 작업 환경 간에 데이터를 복제할 수 있습니
 
 
 --
-버전 요구 사항:: 데이터를 복제하기 전에 소스 볼륨과 타겟 볼륨에서 호환되는 ONTAP 버전이 실행되고 있는지 확인해야 합니다. 자세한 내용은 를 참조하십시오 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/GUID-0810D764-4CEA-4683-8280-032433B1886B.html["데이터 보호 전원 가이드"^].
+버전 요구 사항:: 데이터를 복제하기 전에 소스 볼륨과 타겟 볼륨에서 호환되는 ONTAP 버전이 실행되고 있는지 확인해야 합니다.
++
+--
+https://docs.netapp.com/us-en/ontap/data-protection/compatible-ontap-versions-snapmirror-concept.html["SnapMirror 관계에 대한 호환되는 ONTAP 버전을 봅니다"^]
+
+--
 Cloud Volumes ONTAP 관련 요구사항::
 +
 --
@@ -53,7 +58,7 @@ ONTAP 클러스터별 요구사항::
 * 클러스터가 사내에 있는 경우 회사 네트워크와 AWS, Azure 또는 GCP의 가상 네트워크에 연결되어 있어야 합니다. 일반적으로 VPN 연결입니다.
 * ONTAP 클러스터는 추가 서브넷, 포트, 방화벽 및 클러스터 요구사항을 충족해야 합니다.
 +
-자세한 내용은 를 참조하십시오 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["클러스터 및 SVM 피어링 Express 가이드"^].
+https://docs.netapp.com/us-en/ontap-sm-classic/peering/reference_prerequisites_for_cluster_peering.html["ONTAP 설명서에서 클러스터 피어링을 위한 사전 요구 사항을 확인하십시오"^]
 
 
 
@@ -105,7 +110,7 @@ image:screenshot_drag_and_drop.gif["스크린샷: 데이터 복제 프로세스�
 도움이 필요한 경우 link:concept-replication-policies.html["복제 정책에 대해 자세히 알아보십시오"].
 
 +
-사용자 지정 백업(SnapVault) 정책을 선택한 경우 정책과 연결된 레이블이 소스 볼륨의 스냅샷 복사본 레이블과 일치해야 합니다. 자세한 내용은 link:concept-replication-policies.html#how-backup-policies-work["백업 정책의 작동 방식에 대해 알아보십시오"].
+사용자 지정 백업(SnapVault) 정책을 선택한 경우 정책과 연결된 레이블이 소스 볼륨의 스냅샷 복사본 레이블과 일치해야 합니다. 자세한 내용은 link:concept-backup-policies.html["백업 정책의 작동 방식에 대해 알아보십시오"].
 
 . * 일정 *: 1회 복사본 또는 반복 일정을 선택합니다.
 +
