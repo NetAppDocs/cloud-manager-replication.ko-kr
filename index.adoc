@@ -7,6 +7,7 @@ summary: ONTAP 스토리지 시스템 간에 데이터를 복제하여 클라우
 ---
 = 복제 설명서
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 
