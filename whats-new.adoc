@@ -25,6 +25,8 @@ summary: 복제 서비스의 새로운 기능에 대해 알아보십시오.
 
 이제 Cloud Volumes ONTAP 시스템 또는 온프레미스 ONTAP 클러스터에서 ONTAP 파일 시스템용 Amazon FSx로 데이터를 복제할 수 있습니다.
 
+https://docs.netapp.com/us-en/cloud-manager-replication/task-replicating-data.html["데이터 복제를 설정하는 방법에 대해 알아보십시오"].
+
 
 
 == 2021년 5월 5일
@@ -35,4 +37,4 @@ summary: 복제 서비스의 새로운 기능에 대해 알아보십시오.
 
 사용 편의성과 Cloud Manager 사용자 인터페이스의 현재 모양과 느낌을 맞추기 위해 Replication 탭을 다시 설계했습니다.
 
-image:replication.gif["볼륨 관계 목록을 보여 주는 Cloud Manager의 재설계된 복제 탭 스크린샷"]
+image:https://raw.githubusercontent.com/NetAppDocs/cloud-manager-replication/main/media/replication.gif["볼륨 관계 목록을 보여 주는 Cloud Manager의 재설계된 복제 탭 스크린샷"]
